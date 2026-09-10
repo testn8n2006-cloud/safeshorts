@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cairo: "Cairo", sans-serif;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+    /* Do NOT set overflow:hidden on html — breaks inner scroll containers */
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: var(--font-cairo);
+    direction: rtl;
+    /* No overflow:hidden here — child scroll containers handle it */
+    overscroll-behavior: none; /* prevents page-level bounce/overscroll */
+  }
+
+  /* Hide scrollbars while keeping scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .font-cairo {
+    font-family: var(--font-cairo);
+  }
+
+  /* Safe area padding for notched / Dynamic Island phones */
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top, 0px), 12px);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  }
+
+  /* Full dynamic viewport height — avoids address-bar issues on mobile */
+  .h-dvh {
+    height: 100dvh;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
